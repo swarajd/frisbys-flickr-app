@@ -2,11 +2,11 @@ import Task from "data.task"
 import compose from "ramda/src/compose"
 import prop from "ramda/src/prop"
 import map from "ramda/src/map"
-import $ from "jquery"
-import { hellaUsed } from "./utils/uses"
+import fetchJsonp from "fetch-jsonp"
+// import $ from "jquery"
 
 const url = t =>
-    `http://api.flickr.com/services/feeds/photos_public.gne?tags=${t}&format=json&jsoncallback=?`
+    `http://api.flickr.com/services/feeds/photos_public.gne?&tags=${t}&format=json&jsoncallback=?`
 
 const jsonToItems = prop("items")
 
@@ -29,15 +29,22 @@ const renderImages = imgs => {
 }
 
 const trace = x => {
+    console.log("data: ")
     console.log(x)
     return x;
 }
 
+// const custom_callback = x => x
+
 const getJSON = uri =>
     new Task((rej, res) =>
-        $.getJSON(uri)
-        .done(data => res(data))
-        .fail((_, __, error) => rej(error)))
+        fetchJsonp(uri, {
+            timeout: 5000,
+            jsonpCallback: "jsoncallback"
+        })
+        .then(resp => resp.json())
+        .then(res)
+        .catch(rej))
 
 const app = uri => 
     getJSON(uri)
@@ -46,7 +53,7 @@ const app = uri =>
     .map(itemsToImages)
     .map(renderImages)
 
-const cats = url("dogs")
+const typeUrl = url("dogs")
 
-app(cats)
+app(typeUrl)
 .fork(console.error, console.log)
