@@ -1,0 +1,15 @@
+{
+  "name": "flickr_project",
+  "version": "1.0.0",
+  "description": "frisby's flickr app refactored",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "webpack",
+    "dev": "webpack-dev-server"
+  },
+  "dependencies": {
+    "webpack": "2.2.0-rc.2",
+    "webpack-dev-server": "2.2.0-rc.0"
+  }
+}
