@@ -6,7 +6,9 @@ const path = require('path');
 const env = { dev: process.env.NODE_ENV };
 
 const devServerConfig = {
-  contentBase: path.join(__dirname, '../../src/'),
+  contentBase: path.join(__dirname, '../src/'),
+  hot: true,
+  inline: true
 };
 
 /**
