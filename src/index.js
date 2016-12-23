@@ -1,7 +1,8 @@
 import Task from "data.task"
-import compose from "ramda/src/compose"
-import prop from "ramda/src/prop"
-import map from "ramda/src/map"
+// import compose from "ramda/src/compose"
+// import prop from "ramda/src/prop"
+// import map from "ramda/src/map"
+import {compose, prop, map} from "./utils"
 import fetchJsonp from "fetch-jsonp"
 // import $ from "jquery"
 
