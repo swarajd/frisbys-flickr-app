@@ -3,7 +3,12 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
+const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
+
 module.exports = {
+
+    context: __dirname,
+
     // entry tells webpack where to start looking.
     entry: {
         app: path.join(__dirname, '../src/'),
@@ -55,5 +60,15 @@ module.exports = {
             },
             sourceMap: false,
         }),
+
+        new SWPrecacheWebpackPlugin(
+            {
+                cacheId: 'flickr-project',
+                filename: 'my-service-worker.js',
+                maximumFileSizeToCacheInBytes: 4194304,
+                stripPrefix: path.resolve(__dirname, '../build') + '/',
+                replacePrefix: ''
+            }
+        ),
     ],
 }

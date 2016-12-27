@@ -7,7 +7,7 @@ import fetchJsonp from "fetch-jsonp"
 // import $ from "jquery"
 
 const url = t =>
-    `http://api.flickr.com/services/feeds/photos_public.gne?&tags=${t}&format=json&jsoncallback=?`
+    `https://api.flickr.com/services/feeds/photos_public.gne?&tags=${t}&format=json&jsoncallback=?`
 
 const jsonToItems = prop("items")
 
